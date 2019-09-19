@@ -16,7 +16,12 @@ const config = merge(common, {
 		// progress: true, //进度（该属性只用于命令行）
 		stats: {
 		    colors: true,
-		}
+		},
+		proxy: {
+			"/": {
+				target: 'http://192.168.1.203:9080'
+			}
+		},
 	},
 	plugins: [
 		//---模块热更新插件---start
