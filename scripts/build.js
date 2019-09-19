@@ -3,6 +3,10 @@ const merge = require('webpack-merge');
 const common = require('./common.js');
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const copyPlugin = require('copy-webpack-plugin');
+const path = require('path');
+
+const resolve = (src) => path.resolve(__dirname, src);
 
 const config = merge(common, {
 	mode: 'production',
@@ -15,6 +19,14 @@ const config = merge(common, {
 			test: /\.js($|\?)/i,
 			sourceMap: true
 		}),
+		//---end
+		//---复制静态文件---start
+		new copyPlugin([
+			{
+				from: resolve('../public/img'),
+				to: resolve('../dist/img')
+			}
+		]),
 		//---end
 	] 
 });
