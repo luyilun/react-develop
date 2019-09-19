@@ -24,6 +24,21 @@ module.exports = {
 				exclude: [/node_modules/], 
 				use: ['style-loader', 'css-loader', 'less-loader']
 			},
+			{
+				test: /\.(jpg|png|svg|gif)$/,
+				exclude: [/node_modules/],
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 10000,
+							name: '[hash].[ext]',
+							publicPath: './img/',
+							outputPath: '../dist/img/'
+						}
+					}
+				]
+			}
 		],
 	},
 	resolve: {
