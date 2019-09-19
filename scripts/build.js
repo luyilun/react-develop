@@ -2,14 +2,20 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./common.js');
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = merge(common, {
 	mode: 'production',
 	plugins: [
+		//---清除打包后旧文件---start
+		new CleanWebpackPlugin(),
+		//---end
+		//---压缩js代码---start
 		new uglifyJSPlugin({
 			test: /\.js($|\?)/i,
 			sourceMap: true
-		})
+		}),
+		//---end
 	] 
 });
 

@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const resolve = (src) => path.resolve(__dirname, src);
 
@@ -34,7 +33,6 @@ module.exports = {
 		extensions: ['.js'], //后缀扩展解析
 	},
 	plugins: [
-		new CleanWebpackPlugin(),
 		//---html 模板插件---start
 		new HtmlWebpackPlugin({
 			title: '关于配置与开发环境',
