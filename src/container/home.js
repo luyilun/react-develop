@@ -6,4 +6,4 @@ export default class Home extends React.Component{
 			<div>主页</div>
 		);
 	}
-}
+};
