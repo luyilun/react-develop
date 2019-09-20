@@ -10,8 +10,8 @@ const config = merge(common, {
 		hot: true, //热加载
 		compress: true, //压缩gzip
 		// color: true, //命令行log颜色（该属性只用于命令行）
-		host: '127.0.0.1', //域名
-		port: 3001, //端口
+		host: 'localhost', //域名
+		port: 3002, //端口
 		open: true, //打开默认浏览器
 		// progress: true, //进度（该属性只用于命令行）
 		stats: {
@@ -19,7 +19,14 @@ const config = merge(common, {
 		},
 		proxy: {
 			"/": {
-				target: 'http://192.168.1.203:9080'
+				target: 'http://192.168.1.203:9080',
+				bypass: function(req, res, proxyOptions) {
+					if (req.headers.accept.indexOf("html") !== -1) {
+						//如果是 html 请求就不需要代理
+						console.log("Skipping proxy for browser request.");
+						return "/index.html";
+					}
+			    }
 			}
 		},
 	},
@@ -34,7 +41,7 @@ const compiler = webpack(config);
 
 const server = new webpackDevServer(compiler, config.devServer);
 
-server.listen(3001, '127.0.0.1', () => {
+server.listen(3002, 'localhost', () => {
   console.log('Starting server on http://localhost:3001');
 });
 // module.exports = merge(common, {});
