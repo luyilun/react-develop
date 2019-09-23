@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const resolve = (src) => path.resolve(__dirname, src);
 
@@ -23,18 +24,27 @@ module.exports = {
 				test: /\.(css|less)$/,
 				exclude: [/node_modules/], 
 				use: [
-					'style-loader', 
-					{
-						loader: 'css-loader',
-						options: {
-							modules: {
-								mode: 'local',
-            					localIdentName: '[path][name]__[local]--[hash:base64:5]',
+						miniCssExtractPlugin.loader,// 此插件会与 'style-loader' 同时使用会有冲突
+						// 'style-loader',
+						{
+							loader: 'css-loader',
+							options: {
+								modules: {
+									mode: 'local',
+	            					localIdentName: '[path][name]__[local]--[hash:base64:5]',
+								}
+							}
+						}, 
+						'less-loader',
+						{
+							loader: 'postcss-loader',
+							options: {
+								plugins: (loader) => [
+									require('autoprefixer')()
+								]
 							}
 						}
-					}, 
-					'less-loader'
-				]
+					]
 			},
 			{
 				test: /\.(jpg|png|svg|gif)$/,
@@ -66,5 +76,11 @@ module.exports = {
 			template: resolve('../public/index.html'), 
 		}),
 		//---end
+		//---抽离 css 为文件---
+		new miniCssExtractPlugin({
+			filename: './css/[name]-[hash].css',
+			chunkFilename: './css/[id]-[hash].css'
+		})
+		//---end 
 	],
 };
