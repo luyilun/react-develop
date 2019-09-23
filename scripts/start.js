@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./common.js');
 const webpackDevServer = require('webpack-dev-server');
-const config = merge(common, {
+const config = merge(common({isDev: true}), {
 	mode: 'development',
 	devtool: 'inline-source-map', //开发模式用的文件映射功能
 	devServer: {
@@ -44,4 +44,3 @@ const server = new webpackDevServer(compiler, config.devServer);
 server.listen(3002, 'localhost', () => {
   console.log('Starting server on http://localhost:3001');
 });
-// module.exports = merge(common, {});

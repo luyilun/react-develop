@@ -8,7 +8,7 @@ const path = require('path');
 
 const resolve = (src) => path.resolve(__dirname, src);
 
-const config = merge(common, {
+const config = merge(common({isDev: false}), {
 	mode: 'production',
 	plugins: [
 		//---清除打包后旧文件---start
