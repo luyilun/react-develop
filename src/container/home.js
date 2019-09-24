@@ -24,13 +24,13 @@ export default class Home extends React.Component{
 			setTimeout(()=>resolve(a + 1), 200);
 		});
 	}
-	get1 = async (a) => {
+	get1 = (a) => {
 		return this.course(a);
 	}
-	get2 = async (a) => {
+	get2 = (a) => {
 		return this.course(a);
 	}
-	get3 = async (a) => {
+	get3 = (a) => {
 		return this.course(a);
 	}
 	render(){
