@@ -1,28 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Axis, Chart, Geom, Tooltip, Coord} from 'bizcharts';
+import {
+    Axis, Chart, Geom, Tooltip, Coord,
+} from 'bizcharts';
 
-export default class BarGraph extends React.Component{
+export default class BarGraph extends React.Component {
     static propTypes = {
-        className: PropTypes.string, //图表父容器的 css 类名
-        xKey: PropTypes.string, //x 轴的数据键值
-        yKey: PropTypes.string, //y 轴的数据键值
-        data: PropTypes.arrayOf(PropTypes.object), //图表数据,例 [{}]
-        chartConfig: PropTypes.object, //Chart 组件的其它属性配置
-        axisConfig: PropTypes.object, //Axis 组件的其它属性配置
-        geomConfig: PropTypes.object, //Geom 组件的其它属性配置
-        tooltipConfig: PropTypes.object, //Tooltip 组件的其它属性配置
-        coordConfig: PropTypes.object, //Coord 组件的属性配置
+        className: PropTypes.string, // 图表父容器的 css 类名
+        xKey: PropTypes.string, // x 轴的数据键值
+        yKey: PropTypes.string, // y 轴的数据键值
+        data: PropTypes.arrayOf(PropTypes.object), // 图表数据,例 [{}]
+        chartConfig: PropTypes.object, // Chart 组件的其它属性配置
+        axisConfig: PropTypes.object, // Axis 组件的其它属性配置
+        geomConfig: PropTypes.object, // Geom 组件的其它属性配置
+        tooltipConfig: PropTypes.object, // Tooltip 组件的其它属性配置
+        coordConfig: PropTypes.object, // Coord 组件的属性配置
     };
+
     static defaultProps = {
         xKey: 'x',
         yKey: 'y',
         chartConfig: {
             forceFit: true,
-            padding: 'auto'
-        }
+            padding: 'auto',
+        },
     };
-    render(){
+
+    render() {
         const {
             height,
             data,
@@ -32,21 +36,21 @@ export default class BarGraph extends React.Component{
             axisConfig,
             tooltipConfig,
             geomConfig,
-            coordConfig
+            coordConfig,
         } = this.props;
-        let xAxisConfig = axisConfig? axisConfig[xKey]: undefined;
-        let yAxisConfig = axisConfig? axisConfig[yKey]: undefined;
+        const xAxisConfig = axisConfig ? axisConfig[xKey] : undefined;
+        const yAxisConfig = axisConfig ? axisConfig[yKey] : undefined;
         return (
-            <Chart
-                height={height}
-                data={data}
-                {...chartConfig}
+          <Chart
+              height={height}
+              data={data}
+              {...chartConfig}
             >
-                {coordConfig? <Coord {...coordConfig} />: null}
-                <Axis name={xKey} {...xAxisConfig} />
-                <Axis name={yKey} {...yAxisConfig} />
-                <Tooltip {...tooltipConfig} />
-                <Geom type="interval" position={`${xKey}*${yKey}`} {...geomConfig} />
+              {coordConfig ? <Coord {...coordConfig} /> : null}
+              <Axis name={xKey} {...xAxisConfig} />
+              <Axis name={yKey} {...yAxisConfig} />
+              <Tooltip {...tooltipConfig} />
+              <Geom type="interval" position={`${xKey}*${yKey}`} {...geomConfig} />
             </Chart>
         );
     }
