@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import B from 'src/common/img/1558503607409.jpg';
 import HomeComponent from 'src/component/home/index';
 export default class Home extends React.Component{
