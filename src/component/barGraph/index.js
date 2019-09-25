@@ -41,16 +41,16 @@ export default class BarGraph extends React.Component {
         const xAxisConfig = axisConfig ? axisConfig[xKey] : undefined;
         const yAxisConfig = axisConfig ? axisConfig[yKey] : undefined;
         return (
-          <Chart
+            <Chart
               height={height}
               data={data}
               {...chartConfig}
             >
-              {coordConfig ? <Coord {...coordConfig} /> : null}
-              <Axis name={xKey} {...xAxisConfig} />
-              <Axis name={yKey} {...yAxisConfig} />
-              <Tooltip {...tooltipConfig} />
-              <Geom type="interval" position={`${xKey}*${yKey}`} {...geomConfig} />
+                {coordConfig ? <Coord {...coordConfig} /> : null}
+                <Axis name={xKey} {...xAxisConfig} />
+                <Axis name={yKey} {...yAxisConfig} />
+                <Tooltip {...tooltipConfig} />
+                <Geom type="interval" position={`${xKey}*${yKey}`} {...geomConfig} />
             </Chart>
         );
     }
