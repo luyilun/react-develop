@@ -16,31 +16,28 @@ export default class Charts extends React.Component {
         this.init(); // 组件 dom 节点加载后初始化
     }
 
-	/**
-	 * 初始化一些所需参数，例如：height 等
-	 * @return {*}
-	 */
-	init=() => {
-	    let obj = {};
-	    obj.height = this.chartCon.clientHeight;
-	    this.setState(obj);
-	};
+    /**
+    * 初始化一些所需参数，例如：height 等
+    * @return {*}
+    */
+    init = () => {
+        let obj = {};
+        obj.height = this.chartCon.clientHeight;
+        this.setState(obj);
+    };
 
-	render() {
-	    const {
-		    className,
-	            data,
-	            config
-	        } = this.props;
-	    const { height } = this.state;
-	    return (
-    <div ref={(el) => { this.chartCon = el }} className={classNames(styles.con, className)} >
-	            <BarGraph
-            height={height}
-            data={data}
-            {...config}
-        />
-	        </div>
-	    );
-	}
+    render() {
+        const { className, data, config } = this.props;
+        const { height } = this.state;
+        return (
+            <div
+                ref={el => {
+                    this.chartCon = el;
+                }}
+                className={classNames(styles.con, className)}
+            >
+                <BarGraph height={height} data={data} {...config} />
+            </div>
+        );
+    }
 }

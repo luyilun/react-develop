@@ -1,33 +1,38 @@
 module.exports = {
     "env": {
         "browser": true,
-        "commonjs": true,
+        // "commonjs": true,
         "es6": true
     },
     "parser": "babel-eslint",
-    "extends": "airbnb",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
+    "extends": [
+        // "eslint:recommended",
+        "airbnb",
+        // "plugin:react/recommended",
+        // "plugin:prettier/recommended"
+    ],
     "root": true,
     "settings": {
         "import/resolver": {
             "webpack": {
-                "config": "./scripts/start.js",
+                "config": "./scripts/common.js",
             },
         },
     },
     "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
-        },
-        "ecmaVersion": 2018
+        }
     },
     "plugins": [
-        "react"
+        "react",
+        // "prettier"
     ],
     "rules": {
+        // prettier 格式化规则
+        // "prettier/prettier": "error",
         // 布尔值类型的 propTypes 的 name 必须为 is 或 has 开头
         // @off 不强制要求写 propTypes
         'react/boolean-prop-naming': 'off',

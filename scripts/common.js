@@ -2,14 +2,14 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const resolve = (src) => path.resolve(__dirname, src);
+const resolve = src => path.resolve(__dirname, src);
 
 function common(param = {}) {
     return {
         entry: resolve('../src/index.js'),
         output: {
             filename: 'bundle.js',
-            path: resolve('../dist'),
+            path: resolve('../dist')
         },
         module: {
             rules: [
@@ -17,8 +17,8 @@ function common(param = {}) {
                     test: /\.jsx?/,
                     exclude: [/node_modules/],
                     use: {
-                        loader: 'babel-loader',
-                    },
+                        loader: 'babel-loader'
+                    }
                 },
                 {
                     test: /\.(css|less)$/,
@@ -30,20 +30,18 @@ function common(param = {}) {
                             options: {
                                 modules: {
                                     mode: 'local',
-                                    localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                                },
-                            },
+                                    localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                                }
+                            }
                         },
                         'less-loader',
                         {
                             loader: 'postcss-loader',
                             options: {
-                                plugins: (loader) => [
-                                    require('autoprefixer')(),
-                                ],
-                            },
-                        },
-                    ],
+                                plugins: loader => [require('autoprefixer')()]
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(jpg|png|svg|gif)$/,
@@ -55,33 +53,33 @@ function common(param = {}) {
                                 limit: 10000,
                                 name: '[hash].[ext]',
                                 publicPath: './img/',
-                                outputPath: '../dist/img/',
-                            },
-                        },
-                    ],
-                },
-            ],
+                                outputPath: '../dist/img/'
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         resolve: {
             alias: {
-                src: resolve('../src'),
+                src: resolve('../src')
             },
-            extensions: ['.js'], // 后缀扩展解析
+            extensions: ['.js'] // 后缀扩展解析
         },
         plugins: [
             // ---html 模板插件---start
             new HtmlWebpackPlugin({
                 title: '关于配置与开发环境',
-                template: resolve('../public/index.html'),
+                template: resolve('../public/index.html')
             }),
             // ---end
             // ---抽离 css 为文件---
             new miniCssExtractPlugin({
                 filename: './css/[name]-[hash].css',
-                chunkFilename: './css/[id]-[hash].css',
-            }),
+                chunkFilename: './css/[id]-[hash].css'
+            })
             // ---end
-        ],
+        ]
     };
 }
 module.exports = common;
