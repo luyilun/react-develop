@@ -58,6 +58,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@antv/data-set": "^0.10.2",
     "bizcharts": "^3.5.5",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
