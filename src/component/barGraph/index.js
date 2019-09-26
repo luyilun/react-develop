@@ -38,13 +38,13 @@ export default class BarGraph extends React.Component {
             geomConfig,
             coordConfig,
         } = this.props;
-        const xAxisConfig = axisConfig ? axisConfig[xKey] : undefined;
-        const yAxisConfig = axisConfig ? axisConfig[yKey] : undefined;
+        const xAxisConfig = axisConfig ? axisConfig[xKey] : null;
+        const yAxisConfig = axisConfig ? axisConfig[yKey] : null;
         return (
             <Chart
-              height={height}
-              data={data}
-              {...chartConfig}
+                height={height}
+                data={data}
+                {...chartConfig}
             >
                 {coordConfig ? <Coord {...coordConfig} /> : null}
                 <Axis name={xKey} {...xAxisConfig} />
