@@ -11,11 +11,9 @@ export default class Charts extends React.Component {
         };
         this.chartCon = null; // 图表的父容器节点
     }
-
     componentDidMount() {
         this.init(); // 组件 dom 节点加载后初始化
     }
-
     /**
     * 初始化一些所需参数，例如：height 等
     * @return {*}
@@ -25,7 +23,6 @@ export default class Charts extends React.Component {
         obj.height = this.chartCon.clientHeight;
         this.setState(obj);
     };
-
     render() {
         const { className, data, config } = this.props;
         const { height } = this.state;

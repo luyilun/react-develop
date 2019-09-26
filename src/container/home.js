@@ -11,7 +11,6 @@ export default class Home extends React.Component {
         }) */
         this.doIt();
     }
-
     /**
      * 使用 async 案例
      * @return {*}
@@ -20,9 +19,8 @@ export default class Home extends React.Component {
         const a = await this.get1(0);
         const b = await this.get2(a);
         const c = await this.get3(b);
-        console.log(c);
+        console.log(a, b, c);
     };
-
     /**
     * Promise
     * @return {*}
@@ -32,19 +30,15 @@ export default class Home extends React.Component {
             setTimeout(() => resolve(a + 1), 200);
         });
     };
-
     get1 = (a) => {
         return this.course(a);
     };
-
     get2 = (a) => {
         return this.course(a);
     };
-
     get3 = (a) => {
         return this.course(a);
     };
-
     render() {
         return (
             <HomeComponent />

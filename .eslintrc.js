@@ -862,6 +862,9 @@ module.exports = {
         //     2
         // @off 有时放在第二行开始处更易读
         'operator-linebreak': 'off',
+        // @fixable 要求或禁止类成员之间出现空行
+        // @off 没必要限制
+        'lines-between-class-members': 'off',
         // @fixable 代码块首尾必须要空行
         // @off 没必要限制
         'padded-blocks': 'off',

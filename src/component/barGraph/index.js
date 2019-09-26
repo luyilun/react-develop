@@ -14,7 +14,6 @@ export default class BarGraph extends React.Component {
       tooltipConfig: PropTypes.object, // Tooltip 组件的其它属性配置
       coordConfig: PropTypes.object // Coord 组件的属性配置
   };
-
   static defaultProps = {
       xKey: 'x',
       yKey: 'y',
@@ -23,7 +22,6 @@ export default class BarGraph extends React.Component {
           padding: 'auto'
       }
   };
-
   render() {
       const {
           height,
