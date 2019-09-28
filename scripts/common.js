@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const resolve = src => path.resolve(__dirname, src);
 
@@ -24,7 +24,7 @@ function common(param = {}) {
                     test: /\.(css|less)$/,
                     exclude: [/node_modules/],
                     use: [
-                        param.isDev ? 'style-loader' : miniCssExtractPlugin.loader, // 此插件会与 'style-loader' 同时使用会有冲突
+                        param.isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 此插件会与 'style-loader' 同时使用会有冲突
                         {
                             loader: 'css-loader',
                             options: {
@@ -74,7 +74,7 @@ function common(param = {}) {
             }),
             // ---end
             // ---抽离 css 为文件---
-            new miniCssExtractPlugin({
+            new MiniCssExtractPlugin({
                 filename: './css/[name]-[hash].css',
                 chunkFilename: './css/[id]-[hash].css'
             })
