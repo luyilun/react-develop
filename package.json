@@ -7,7 +7,7 @@
     "start": "node scripts/start",
     "build": "node scripts/build",
     "server": "node server",
-    "test": "jest --config --colors"
+    "test": "jest --config --colors --coverage"
   },
   "repository": {
     "type": "git",
