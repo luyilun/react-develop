@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import B from 'src/common/img/1558503607409.jpg';
-import TestData from 'src/common/js/barGraph.test';
+import TestData from 'src/common/js/barGraph.demo';
 import Charts from 'src/component/charts/index';
 import styles from './index.less';
 
