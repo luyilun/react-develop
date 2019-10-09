@@ -1,4 +1,5 @@
 // fileTransformer.js
+/*eslint import/no-extraneous-dependencies:0*/
 const path = require('path');
 
 module.exports = {
