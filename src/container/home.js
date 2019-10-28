@@ -10,6 +10,12 @@ export default class Home extends React.Component {
             })
         }) */
         this.doIt();
+        const arr = [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }];
+        const num = arr.reduce((start, res) => {
+            // console.log(res, start);
+            return res;
+        });
+        console.log(num);
     }
     /**
      * 使用 async 案例
