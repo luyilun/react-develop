@@ -7,31 +7,77 @@ export default class ThreeBox extends React.Component {
         super(props);
         this.state = {};
         this.threeEle = null;
+        this.tScene = null; // 场景
+        this.tCamera = null; // 透视相机
+        this.tRenderer = null; // 渲染
+        this.tGeometry = null; // 几何体
+        this.tMaterial = null; // 点
+        this.tCube = null; //
+        this.tLight = null; //
     }
     componentDidMount() {
         this.renderThree();
     }
     renderThree=() => {
-        let scene = new THREE.Scene();
+        this.initRenderer();
 
-        let camera = new THREE.PerspectiveCamera(75, 600 / 600, 0.1, 1000);
+        this.initScene();
+        this.initCamera();
+        this.initLight();
+        this.initObject();
 
-        let renderer = new THREE.WebGLRenderer();
+        this.mapRender();
+    };
+    initRenderer=() => {
+        this.tRenderer = new THREE.WebGLRenderer();
+        this.tRenderer.setSize(600, 600);
+        this.threeEle.appendChild(this.tRenderer.domElement);
+        this.tRenderer.setClearColor(0xFFFFFF, 1.0);
+    };
+    mapRender=() => {
+        this.tRenderer.clear();
+        this.tRenderer.render(this.tScene, this.tCamera);
+    };
+    initScene=() => {
+        this.tScene = new THREE.Scene();
+    };
+    initCamera=() => {
+        this.tCamera = new THREE.PerspectiveCamera(45, 600 / 600, 1, 1000);
+        // this.tCamera.position.set(0, 0, 100);
+        this.tCamera.position.x = 0;
+        this.tCamera.position.y = 1000;
+        this.tCamera.position.z = 0;
+        this.tCamera.up.x = 0;
+        this.tCamera.up.y = 0;
+        this.tCamera.up.z = 1;
+        this.tCamera.lookAt({
+            x: 0,
+            y: 0,
+            z: 0
+        });
+    };
+    initLight=() => {
+        this.tLight = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+        this.tLight.position.set(100, 100, 200);
+        this.tScene.add(this.tLight);
+    };
+    initObject=() => {
+        this.tGeometry = new THREE.Geometry();
+        this.tGeometry.vertices.push(new THREE.Vector3(-500, 0, 0));
+        this.tGeometry.vertices.push(new THREE.Vector3(500, 0, 0));
+        let line1;
+        let line2;
+        for (let i = 0; i <= 20; i++) {
 
-        renderer.setSize(600, 600);
+            line1 = new THREE.Line(this.tGeometry, new THREE.LineBasicMaterial({ color: 0x000000, opacity: 0.5 }));
+            line1.position.z = (i * 50) - 500;
+            this.tScene.add(line1);
 
-        this.threeEle.appendChild(renderer.domElement);
-        let geometry = new THREE.CubeGeometry(1, 1, 1);
-        let material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        let cube = new THREE.Mesh(geometry, material); scene.add(cube);
-        camera.position.z = 5;
-        function render() {
-            cube.rotation.x += 0.1;
-            cube.rotation.y += 0.1;
-            renderer.render(scene, camera);
-            requestAnimationFrame(render);
+            line2 = new THREE.Line(this.tGeometry, new THREE.LineBasicMaterial({ color: 0x000000, opacity: 0.2 }));
+            line2.position.x = (i * 50) - 500;
+            line2.rotation.y = 90 * Math.PI / 180;
+            this.tScene.add(line2);
         }
-        render();
     };
     render() {
         return (
